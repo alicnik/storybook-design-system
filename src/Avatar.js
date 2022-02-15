@@ -51,7 +51,7 @@ const Image = styled.div`
   ${(props) =>
     !props.src &&
     css`
-      background: ${!props.loading && "#37D5D3"};
+      background: ${!props.loading ? "#37D5D3" : undefined};
     `}
 
   img {
@@ -98,6 +98,10 @@ const Initial = styled.div`
   `}
 `;
 
+/**
+ * Use an avatar for attributing actions or content to specific users.
+ * The user's name should always be present when using Avatar - either printed beside the avatar or in a tooltip.
+ */
 export function Avatar({ loading, username, src, size, ...props }) {
   let avatarFigure = <Icon icon="useralt" />;
   const a11yProps = {};
@@ -117,16 +121,23 @@ export function Avatar({ loading, username, src, size, ...props }) {
   }
 
   return (
-    <Image size={size} loading={loading} src={src} {...a11yProps} {...props}>
+    <Image size={size} loading={!!loading} src={src} {...a11yProps} {...props}>
       {avatarFigure}
     </Image>
   );
 }
 
 Avatar.propTypes = {
+  /** Use the loading state to indicate that the data Avatar needs is still loading. */
   loading: PropTypes.bool,
+  /**
+    Avatar falls back to the user's initial when no image is provided. 
+    Supply a `username` and omit `src` to see what this looks like.
+    */
   username: PropTypes.string,
+  /** The URL of the Avatar's image. */
   src: PropTypes.string,
+  /** Avatar comes in four sizes. In most cases, you'll be fine with `medium`. */
   size: PropTypes.oneOf(Object.keys(sizes)),
 };
 
@@ -136,5 +147,3 @@ Avatar.defaultProps = {
   src: null,
   size: "medium",
 };
-
-export default Avatar;
