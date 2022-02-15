@@ -35,6 +35,11 @@ Sizes.args = {
   username: "Tom Coleman",
   src: "https://avatars2.githubusercontent.com/u/132554",
 };
+Sizes.parameters = {
+  docs: {
+    storyDescription: "4 sizes are supported. How exciting.",
+  },
+};
 
 export const Initials = (args) => (
   <div>
