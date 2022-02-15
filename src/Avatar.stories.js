@@ -1,10 +1,13 @@
 import React from "react";
 
-import Avatar from "./Avatar";
+import { Avatar } from "./Avatar";
 
 export default {
   title: "Design System/Avatar",
   component: Avatar,
+  parameters: {
+    componentSubtitle: "Displays an image that represents a user or organisation",
+  },
   argTypes: {
     size: {
       control: {
@@ -18,6 +21,7 @@ export default {
 
 export const Standard = (args) => <Avatar {...args} />;
 Standard.args = {
+  loading: false,
   size: "large",
   username: "Tom Coleman",
   src: "https://avatars2.githubusercontent.com/u/132554",
